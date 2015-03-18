@@ -64,7 +64,13 @@ public class MyVector {
      */
     public void delete(int j) {
     	tryThrowArgumentException(j);
-        System.arraycopy(ar, j+1, ar, j, ar.length-1-j);
+        Object[] tmp = new Object[ar.length - 1];
+        int i;
+        for(i = 0; i < tmp.length; ++i) {
+            tmp[i] = i == j ? ar[i+1] : ar[i];
+        }
+        ar = tmp;
+        size = i;
     }
 
     public String toString() {
